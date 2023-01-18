@@ -383,6 +383,7 @@
 "Assets/Resources/Scripts/GameManager.cs"
 "Assets/Resources/Scripts/PhotonLauncher.cs"
 "Assets/Resources/Scripts/PlayerCtrl.cs"
+"Assets/Resources/Scripts/pr_PhotonLauncher.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01_UGUI.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark02.cs"

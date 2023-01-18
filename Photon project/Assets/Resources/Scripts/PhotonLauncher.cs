@@ -2,25 +2,50 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
 using UnityEngine.SceneManagement;
 using Photon.Pun;
 using Photon.Realtime;
 
-
+// MonoBehaviourPunCallbacks의 이전 형태 : Photon.PunBehaviour
+/* <과제>
+ - 동기화 잘하는 게 핵심
+ - client색 동기화
+ - ui띄워서 obj 위에 닉네임 띄우기
+ - ui hp띄우기
+ㄴ 모든 클라이언트에 띄우기
+  - 발사할 때, 맞았을 때, 터질 때 effect추가, 동기화
+  - room 맴버 4명 다 차면 3 2 1 시작, 
+ - hp다 떨어지면 죽고 List 동기화
+ - 아이템 개념 추가. 랜덤으로 뿅 띄워서 먼저 먹는사람쓸 수 있게 (카트라이더처럼)
+ 
+ <게임서버, 네트워크 책>
+온라인게임서버프로그래밍
+    TCP/IP 소켓프로그래밍
+    멀티플레이어 게임프로그래밍
+ */
 public class PhotonLauncher : MonoBehaviourPunCallbacks
 {
     [SerializeField] private string gameVersion = "0.0.1";
     [SerializeField] private byte maxPlayerPerRoom = 4;
-
     [SerializeField] private string nickName = string.Empty;
-
     [SerializeField] private Button connectButton = null;
+    /*
+    # 포톤
+    서버 로비 룸
+    ㄴ 서버 접속 -> 로비에 모여 있다가 룸에서 겜시작함.
+    ㄴ 이 게임은 로비 개념은 뺀 것
 
+    ㄴ 포톤 접속하고 입장하기 위해서 위에 짜여진 class인 PhotonLauncer
+     */
 
     private void Awake()
     {
         // 마스터가 PhotonNetwork.LoadLevel()을 호출하면,
         // 모든 플레이어가 동일한 레벨을 자동으로 로드
+
+        // 방 만든사람이 마스터가 되는데, 마스터가 씬 부르면 플레이어 동시에 씬 띄워줌
+        // 동기화 시켜주려면 이것이 켜져야 한다.
         PhotonNetwork.AutomaticallySyncScene = true;
     }
 
@@ -38,18 +63,23 @@ public class PhotonLauncher : MonoBehaviourPunCallbacks
             return;
         }
 
-        if (PhotonNetwork.IsConnected)
+        if (PhotonNetwork.IsConnected) // 내가 서버에 접속된 상태인지 체크
         {
-            PhotonNetwork.JoinRandomRoom();
+            PhotonNetwork.JoinRandomRoom(); // 내가 들어갈 수 있는 방을 랜덤으로 하나 찾는다.
+            //PhotonNetwork.JoinRoom()
+            //PhotonNetwork.LeaveLobby()
         }
         else
-        {
+        { // 처음에는 접속이 안되어 있으니까 무조건 여기로 들어온다.
             Debug.LogFormat("Connect : {0}", gameVersion);
+            //Application.version
+            PhotonNetwork.GameVersion = gameVersion; // PhotonNetwork 버전 같아야 같은 게임에 접속할 수 있다.
+            //PhotonNetwork.GameVersion = Application.version; // 따로 게임버전 관리 안할거면 유니티 프로젝트 버전 넣어 사용하면 된다.
 
-            PhotonNetwork.GameVersion = gameVersion;
             // 포톤 클라우드에 접속을 시작하는 지점
-            // 접속에 성공하면 OnConnectedToMaster 메서드 호출
-            PhotonNetwork.ConnectUsingSettings();
+            // 접속에 성공하면 OnConnectedToMaster 메서드 호출(callback)
+            PhotonNetwork.ConnectUsingSettings();// 포톤네트워크에 설정된 기본 값으로 접속을 하겠다.
+            // ㄴ 설정값 넣어쓰는 오버라이드 써서 커스텀해도 됨.
         }
     }
 
@@ -62,10 +92,12 @@ public class PhotonLauncher : MonoBehaviourPunCallbacks
         PhotonNetwork.NickName = nickName;
     }
 
+    // PhotonNetwork.ConnectUsingSettings()의 콜백함수
     public override void OnConnectedToMaster()
     {
         Debug.LogFormat("Connected to Master: {0}", nickName);
 
+        // 접속됐으니까 연결버튼 false
         connectButton.interactable = false;
 
         PhotonNetwork.JoinRandomRoom();
@@ -87,16 +119,15 @@ public class PhotonLauncher : MonoBehaviourPunCallbacks
         Debug.Log("Joined Room");
         // 마스터가 동시에 게임을 시작하게 하는 구조가 아니기 때문에 각자 씬을 부르면 됨.
         //PhotonNetwork.LoadLevel("Room");
-        SceneManager.LoadScene("Room");
+        SceneManager.LoadScene("Room"); // Scenes in build에 등록된 씬만 Load가능
     }
 
+    
     public override void OnJoinRandomFailed(short returnCode, string message)
-    {
+    { // 서버에는 들어왔고, 처음엔 방 없으니까 여기로 들어온다.
         Debug.LogErrorFormat("JoinRandomFailed({0}): {1}", returnCode, message);
-
-        connectButton.interactable = true;
-
         Debug.Log("Create Room");
-        PhotonNetwork.CreateRoom(null, new RoomOptions { MaxPlayers = maxPlayerPerRoom });
+        // random이라서 roomname null
+        PhotonNetwork.CreateRoom(null, new RoomOptions { MaxPlayers = maxPlayerPerRoom }); // createRoom 되면 -> joinRoom 
     }
-}
+} // end of class

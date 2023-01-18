@@ -760,7 +760,7 @@ namespace Photon.Pun
         }
 
         /// <summary>
-        /// Apply any queued add/remove of interfaces from the callback lists. Typically called before looping callback lists.
+        ///  any queued add/remove of interfaces from the callback lists. Typically called before looping callback lists.
         /// </summary>
         private void UpdateCallbackLists()
         {

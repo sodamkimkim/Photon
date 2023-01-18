@@ -28,7 +28,7 @@ public class Bullet : MonoBehaviourPun
         direction = _dir;
         isShoot = true;
 
-        if (photonView.IsMine) Invoke("SelfDestroy", duration);
+     Invoke("SelfDestroy", duration);
     }
 
     private void SelfDestroy()

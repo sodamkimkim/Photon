@@ -30,6 +30,8 @@ public class PlayerCtrl : MonoBehaviourPun
 
     private void Update()
     {
+        // 모든 Player가 PlayerCtrl.cs 가지고 있기 때문에 내 플레이어라는 걸 구분하려면 photonView.IsMine써야한다.
+        // 내 플레이어가 아니면 키 컨트롤 안되게끔
         if (!photonView.IsMine) return;
         if (isDead) return;
 
@@ -44,6 +46,7 @@ public class PlayerCtrl : MonoBehaviourPun
 
         if (Input.GetMouseButtonDown(0)) ShootBullet();
 
+        // 플레이어가 마우스 커서 쫓아서 바라보도록
         LookAtMouseCursor();
     }
 
@@ -69,17 +72,23 @@ public class PlayerCtrl : MonoBehaviourPun
 
     public void LookAtMouseCursor()
     {
+        // 마우스커서 포지션을 screen to world하면 Vector2 -> 3 => z는 카메라 찍고있는 젤 앞 위치
+        // ㄴ 포지션 위치와  맞지 않기 때문에 playerPos를 screen으로 보내어 쓴다.
         Vector3 mousePos = Input.mousePosition;
         Vector3 playerPos = Camera.main.WorldToScreenPoint(this.transform.position);
         Vector3 dir = mousePos - playerPos;
+        // arcTan으로 x축 y축으로 각도 구함. 
+        // 근데 return in radian이기 때문에 변환
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        // 현재 플레이어가 transform.up  == Vector3.up 상태이기 때문에 Vector3.up을 사용
+        // 정면 z축과 angle을 보정해주기 위해서 90도 더해줌
         this.transform.rotation = Quaternion.AngleAxis(-angle + 90.0f, Vector3.up);
     }
 
     [PunRPC]
     public void ApplyHp(int _hp)
     {
-        hp = _hp;
+        hp = _hp; // hp를 player각자 빼주는게 아니라 갱신하는 방식 이용
         Debug.LogErrorFormat("{0} Hp: {1}", PhotonNetwork.NickName, hp);
 
         if (hp <= 0)
