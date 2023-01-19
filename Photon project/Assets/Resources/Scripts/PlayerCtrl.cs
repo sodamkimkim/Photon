@@ -8,16 +8,12 @@ using Photon.Pun;
 public class PlayerCtrl : MonoBehaviourPun
 {
     private Rigidbody rb = null;
-
     [SerializeField] private GameObject bulletPrefab = null;
-
     [SerializeField] private Color[] colors = null;
     [SerializeField] private float speed = 3.0f;
 
     private int hp = 3;
     private bool isDead = false;
-
-
     private void Awake()
     {
         rb = this.GetComponent<Rigidbody>();
@@ -56,8 +52,14 @@ public class PlayerCtrl : MonoBehaviourPun
         if (_playerNum > colors.Length) return;
 
         this.GetComponent<MeshRenderer>().material.color = colors[_playerNum - 1];
+        photonView.RPC("SayThisIsMyColor", RpcTarget.All, _playerNum);
     }
 
+    [PunRPC]
+    public void SayThisIsMyColor(int _playerNum)
+    {
+        this.GetComponent<MeshRenderer>().material.color = colors[_playerNum - 1];
+    }
     private void ShootBullet()
     {
         if (bulletPrefab)

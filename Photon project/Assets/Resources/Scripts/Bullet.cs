@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using Photon.Pun;
-
-
 public class Bullet : MonoBehaviourPun
 {
     private bool isShoot = false;
@@ -12,8 +10,6 @@ public class Bullet : MonoBehaviourPun
     private float speed = 10.0f;
     private float duration = 5.0f;
     private GameObject owner = null;
-
-
     private void Update()
     {
         if (isShoot)

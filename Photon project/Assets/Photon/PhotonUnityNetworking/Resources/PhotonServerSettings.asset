@@ -43,6 +43,8 @@ MonoBehaviour:
   - OnDamage
   - RPCApplyPlayerList
   - ApplyPlayerListOnPlayerLeft
+  - ApplyPlayerList
+  - SayThisIsMyColor
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
