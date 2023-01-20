@@ -45,6 +45,9 @@ MonoBehaviour:
   - ApplyPlayerListOnPlayerLeft
   - ApplyPlayerList
   - SayThisIsMyColor
+  - SetPlayersColor
+  - setPlayersColor
+  - Applyhp
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

@@ -7,17 +7,6 @@ using UnityEngine.SceneManagement;
 using Photon.Pun;
 using Photon.Realtime;
 
-// MonoBehaviourPunCallbacks의 이전 형태 : Photon.PunBehaviour
-/* <과제>
- - 동기화 잘하는 게 핵심
- - client색 동기화
- - ui띄워서 obj 위에 닉네임 띄우기
- - ui hp띄우기(모든 클라이언트에 띄우기)
- - 발사할 때, 맞았을 때, 터질 때 effect추가, 동기화
- - room 맴버 4명 다 차면 3 2 1 시작, 
- - hp다 떨어지면 죽고 List 동기화
- - 아이템 개념 추가. 랜덤으로 뿅 띄워서 먼저 먹는사람쓸 수 있게 (카트라이더처럼)
- */
 public class PhotonLauncher : MonoBehaviourPunCallbacks
 { // 포톤 접속 & 입장하기 위해서 짜여진 class PhotonLauncher
     [SerializeField] private string gameVersion = "0.0.1";

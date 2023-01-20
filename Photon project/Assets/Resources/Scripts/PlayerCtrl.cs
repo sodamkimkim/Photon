@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using Photon.Pun;
-
+using Photon.Realtime;
+using UnityEngine.SceneManagement;
 
 public class PlayerCtrl : MonoBehaviourPun
 {
@@ -14,6 +15,9 @@ public class PlayerCtrl : MonoBehaviourPun
 
     private int hp = 3;
     private bool isDead = false;
+    private int playerNum = 0;
+
+
     private void Awake()
     {
         rb = this.GetComponent<Rigidbody>();
@@ -44,6 +48,7 @@ public class PlayerCtrl : MonoBehaviourPun
 
         // 플레이어가 마우스 커서 쫓아서 바라보도록
         LookAtMouseCursor();
+        photonView.RPC("SayThisIsMyColor", RpcTarget.All, playerNum);
     }
 
     public void SetMaterial(int _playerNum)
@@ -51,10 +56,9 @@ public class PlayerCtrl : MonoBehaviourPun
         Debug.LogError(_playerNum + " : " + colors.Length);
         if (_playerNum > colors.Length) return;
 
-        this.GetComponent<MeshRenderer>().material.color = colors[_playerNum - 1];
         photonView.RPC("SayThisIsMyColor", RpcTarget.All, _playerNum);
+        playerNum = _playerNum;
     }
-
     [PunRPC]
     public void SayThisIsMyColor(int _playerNum)
     {

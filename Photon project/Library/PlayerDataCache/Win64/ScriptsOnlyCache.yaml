@@ -15,6 +15,8 @@ ScriptsOnlyBuild:
     - Photon.Pun.Demo.PunBasics.PlayerUI
     - Photon.Pun.Demo.SlotRacer.PlayerControl
     - Photon.Pun.Demo.SlotRacer.Utils.SplineWalker
+    PhotonUnityNetworking.Editor.dll:
+    - Photon.Pun.PunSceneSettings
     PhotonUnityNetworking.dll:
     - Photon.Pun.PhotonAnimatorView
     - Photon.Pun.PhotonRigidbodyView
@@ -147,69 +149,69 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1660}
     - Class: 114
-      Script: {instanceID: 1750}
+      Script: {instanceID: 1748}
     - Class: 114
-      Script: {instanceID: 1826}
+      Script: {instanceID: 1824}
     - Class: 114
-      Script: {instanceID: 2266}
+      Script: {instanceID: 2264}
     - Class: 114
-      Script: {instanceID: 2330}
+      Script: {instanceID: 2328}
     - Class: 114
-      Script: {instanceID: 2740}
+      Script: {instanceID: 2734}
     - Class: 114
-      Script: {instanceID: 2978}
+      Script: {instanceID: 2972}
     - Class: 114
-      Script: {instanceID: 3206}
+      Script: {instanceID: 3200}
     - Class: 114
-      Script: {instanceID: 3302}
+      Script: {instanceID: 3296}
     - Class: 114
-      Script: {instanceID: 3598}
+      Script: {instanceID: 3590}
     - Class: 114
-      Script: {instanceID: 4108}
+      Script: {instanceID: 4100}
     - Class: 114
-      Script: {instanceID: 4112}
+      Script: {instanceID: 4104}
     - Class: 114
-      Script: {instanceID: 4294}
+      Script: {instanceID: 4286}
     - Class: 114
-      Script: {instanceID: 4322}
+      Script: {instanceID: 4314}
     - Class: 114
-      Script: {instanceID: 4428}
+      Script: {instanceID: 4418}
     - Class: 114
-      Script: {instanceID: 4444}
+      Script: {instanceID: 4434}
     - Class: 114
-      Script: {instanceID: 4732}
+      Script: {instanceID: 4716}
     - Class: 114
-      Script: {instanceID: 5326}
+      Script: {instanceID: 5308}
     - Class: 114
-      Script: {instanceID: 5464}
+      Script: {instanceID: 5444}
     - Class: 114
-      Script: {instanceID: 5488}
+      Script: {instanceID: 5468}
     - Class: 114
-      Script: {instanceID: 5556}
+      Script: {instanceID: 5536}
     - Class: 114
-      Script: {instanceID: 5948}
+      Script: {instanceID: 5924}
     - Class: 114
-      Script: {instanceID: 5996}
+      Script: {instanceID: 5972}
     - Class: 114
-      Script: {instanceID: 6208}
+      Script: {instanceID: 6180}
     - Class: 114
-      Script: {instanceID: 6366}
+      Script: {instanceID: 6336}
     - Class: 114
-      Script: {instanceID: 6720}
+      Script: {instanceID: 6686}
     - Class: 114
-      Script: {instanceID: 6734}
+      Script: {instanceID: 6700}
     - Class: 114
-      Script: {instanceID: 7380}
+      Script: {instanceID: 7342}
     - Class: 114
-      Script: {instanceID: 7634}
+      Script: {instanceID: 7594}
     - Class: 114
-      Script: {instanceID: 7930}
+      Script: {instanceID: 7890}
     - Class: 114
-      Script: {instanceID: 8316}
+      Script: {instanceID: 8278}
     - Class: 114
-      Script: {instanceID: 8452}
+      Script: {instanceID: 8412}
     - Class: 114
-      Script: {instanceID: 8792}
+      Script: {instanceID: 8752}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -270,15 +272,15 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 3206}
+      Script: {instanceID: 3200}
     - Class: 114
-      Script: {instanceID: 3598}
+      Script: {instanceID: 3590}
     - Class: 114
-      Script: {instanceID: 4114}
+      Script: {instanceID: 4106}
     - Class: 114
-      Script: {instanceID: 7634}
+      Script: {instanceID: 7594}
     - Class: 114
-      Script: {instanceID: 8316}
+      Script: {instanceID: 8278}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 135
@@ -1126,7 +1128,7 @@ ScriptsOnlyBuild:
     className: CrcCheckToggle
   - hash:
       serializedVersion: 2
-      Hash: 75de60bccbd35c2e82026d4a60733734
+      Hash: fd68d84f33fad85aac38f2739c0ee270
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_SpriteAsset
@@ -1378,7 +1380,7 @@ ScriptsOnlyBuild:
     className: FriendListView
   - hash:
       serializedVersion: 2
-      Hash: e78765d93b37fe61ed100bbbc2be3ac6
+      Hash: 300fd99066f8c288e85f5e81ce65fe34
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_FontAsset
@@ -2178,4 +2180,4 @@ ScriptsOnlyBuild:
   scenePathNames:
   - Assets/Scenes/PhotonLauncher.unity
   - Assets/Scenes/Room.unity
-  playerPath: C:/Users/admin/Desktop/tryu/Photon project.exe
+  playerPath: C:/Users/theka/OneDrive/Desktop/Photon project.exe
